@@ -9,6 +9,12 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage ('build image') {
+            steps {
+                docker build -t missionn:latest . 
+            }
+        }
     }
 
     post {
