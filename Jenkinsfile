@@ -4,15 +4,16 @@ pipeline {
     }
 
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage ('build image') {
+        stage('Build Image') {
             steps {
-                docker build -t missionn:latest . 
+                
+                sh 'docker build -t missionn:latest .'
             }
         }
     }
@@ -22,11 +23,7 @@ pipeline {
             cleanWs()
         }
 
-        success {
-            mail to: 'walunjpallavi69@gmail.com',
-                 subject: "Jenkins Job Success",
-                 body: "Jenkins Job is Successful"
-        }
+        
 
         failure {
             mail to: 'walunjpallavi69@gmail.com',
